@@ -1,0 +1,132 @@
+A2. Demonstrate to create a project in remote repository and apply  fork, merge, diff, merge conflict, branch and pull request concepts on repository using GitHub. 
+
+_________________
+
+FORK
+
+User A (The Owner): The person who owns the original project.
+User B (The Contributor): You, who wants to add a feature to their project.
+
+Step 1: Create the Project (As User A - The Owner)
+Log in to GitHub as User A (your main account, e.g., ProjectOwner).
+
+Step 2: fork the Project (As User B - The Contributor)
+Log out of ProjectOwner and log in as your second account (User B, e.g., CodeContributor).
+
+Navigate to ProjectOwner's repository: https://github.com/ProjectOwner/demo-project.
+
+In the top-right corner, click the Fork button.
+
+GitHub will create a copy of this project in your CodeContributor account. You will be redirected to https://github.com/CodeContributor/demo-project.
+
+Concept: fork A fork is a personal copy of another user's repository that lives in your own GitHub account. You have full control over your fork, allowing you to make changes without affecting the original project.
+
+_______________________
+Branch
+
+Create a new branch to work on:
+
+git checkout -b my-new-feature
+(This creates a branch named my-new-feature and switches to it.)
+
+Concept: branch A branch is a parallel version of your repository. It allows you to develop new features (like my-new-feature) in isolation without breaking the stable main branch.
+
+_______________________
+
+Pull Request 
+
+Concept: pull request (PR) A pull request is a formal request to the original project owner to "pull" your changes (from your fork's branch) and merge them into their main project.
+
+
+Make Changes and Open a pull request (As User B)
+On your my-new-feature branch, make a change.
+
+echo "This is a new feature!" >> README.md
+Commit and push this change to your fork (origin):
+
+git add README.md
+git commit -m "Added a cool new feature"
+git push origin my-new-feature
+Go to your fork's page on GitHub: https://github.com/CodeContributor/demo-project.
+
+You will see a yellow banner: "my-new-feature had recent pushes". Click the green "Compare & pull request" button.
+
+This will open a new page. You are asking to merge your my-new-feature branch into ProjectOwner's main branch.
+
+Add a title (e.g., "Add New Feature") and click "Create pull request".
+
+_____________________________
+Merge Conflict
+
+** Create Branch host1 and Make a Change
+Now, create your first branch (host1) and modify file.py.
+
+# Create and switch to branch host1
+git checkout -b host1
+
+# Modify line 1 in file.py
+echo 'print("vvce")' > file.py
+
+# Commit the change on host1
+git add .
+git commit -m "Host1: Updated file.py"
+
+** Create Branch host2 and Make a Conflicting Change
+Go back to the main branch (the common ancestor) and create host2. Then, make a different change to the same line.
+
+# Go back to the main branch
+git checkout main
+
+# Create and switch to branch host2
+git checkout -b host2
+
+# Modify the *same line* (line 1) in file.py, but differently
+echo 'print("mysuru")' > file.py
+
+# Commit the change on host2
+git add .
+git commit -m "Host2: Updated file.py"
+At this point, you have two branches (host1 and host2) that have different changes on the exact same line of file.py. Git won't know which one to keep.
+
+** Create the Merge Conflict
+
+# Switch to the branch you want to merge INTO
+git checkout host1
+
+# Try to merge host2
+git merge host2
+You will immediately get the conflict error:
+
+Auto-merging file.py
+CONFLICT (content): Merge conflict in file.py
+Automatic merge failed; fix conflicts and then commit the result.
+
+------------->>>>
+After you have edited the file, saved it, and removed all the conflict markers (<<<, ===, >>>), you just need to complete the merge.
+
+Here are the two simple steps you run after saving your file:
+
+1. Tell Git the Conflict is Fixed
+You use git add on the file you just fixed. This tells Git, "I have resolved the conflict in this file, and this is the final version."
+
+Bash
+
+# Use the name of the file you fixed
+git add file.py
+2. Finish the Merge
+Now, you just run git commit. This will create a new "merge commit" that finalizes the process.
+
+Bash
+
+git commit
+Your code editor will open with a pre-filled message (like "Merge branch 'host2' into host1"). You don't need to change it. Just save and close the editor, and the merge is complete! ✅
+
+<<<<<------
+
+If the files are temporary or not important, you can safely remove the directory: rm -rf labInternalsPra and try to push.
+
+______________________________
+
+Diff
+
+can be used to see diff between files and branches

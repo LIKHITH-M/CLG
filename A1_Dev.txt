@@ -1,0 +1,64 @@
+A1. Demonstrate and Create project in local and remote repository using GitBash and GitHub and
+apply  init, status, log, add, commit, push, config, clone and reset commands on repository. 
+
+_______________________
+Command (init):
+
+git init
+Description: This "initializes" a new, empty Git repository in your current folder. It creates a hidden .git directory that will track all your changes.
+_________________
+Command (status):
+
+git status
+Description: This is your most-used command. It shows you the current state of your repository. 
+_____________________
+Command (log):
+
+git log
+Description: This shows a chronological list of all your commits.Each entry shows the commit hash (a unique ID), the author, date, and message. Press q to exit the log.
+_________________
+Command (add):
+
+git add readme.md
+Description: This adds the file from your working directory to the "staging area." Think of the staging area as a "shopping cart" for your next commit. You're "adding" the file to the cart. You can also use git add . to add all new or modified files.
+
+
+Command (commit):
+
+git commit -m "Initial commit: Added readme.md"
+Description: This takes a permanent snapshot (a "commit") of all the files in your staging area.
+
+-m stands for "message." Every commit must have a message describing the change.
+
+
+git push -u origin main
+Description: This "pushes" (uploads) your committed changes to the remote repository (origin) on the main branch.
+
+-u (or --set-upstream) links your local main branch to the remote origin/main branch. You only need to do this once. For all future pushes, you can just type git push.
+__________________
+
+Command: config
+
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+Description (config):
+
+git config is used to set configuration options for your Git installation.
+--global means this setting will apply to every repository on your computer.
+
+user.name and user.email are the credentials that will be publicly visible in your commit history.
+
+__________________
+Command (clone):
+
+git clone https://github.com/YourUsername/my-demo-project.git my-second-copy
+Description: This "clones" (downloads) the entire repository from the URL into a new folder named my-second-copy. It automatically sets up the origin remote for you.
+
+____________________
+Command (reset):
+
+git reset --hard <paste-your-commit-hash-here>
+Example: git reset --hard 1a2b3c4d5e6f
+
+Description: git reset moves your project's state back to a previous commit.
+--hard: This is the most "dangerous" option. It deletes all changes (new files, modifications) that came after that commit. It makes your local project exactly as it was at that previous point in time.
